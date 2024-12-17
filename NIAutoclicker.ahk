@@ -139,8 +139,8 @@ return
           else
             TooltipMsg = Click the location for point %A_Index%.
           toggle := false
-          Keywait, LButton, D
-          Keywait, LButton
+          Keywait, RButton, D
+          Keywait, RButton
           if !settingPoints ; Opening options sets this to false, breaking the loop
             return
           TooltipMsg = 
@@ -217,21 +217,21 @@ autoclick:
   }
 return
 
-~*LButton up::
+~*RButton up::
 return
 
 #If WinActive("ahk_id" . actWin) && toggle
-$~*LButton::
+$~*RButton::
   MouseGetPos,,, winClick
   if winClick = %actWin%
     setTimer, autoclick, off
-  Send {Blind}{LButton Down}
+  Send {Blind}{RButton Down}
 return
 
-$~*LButton up::
+$~*RButton up::
   IfWinNotExist, NIAC Settings
     setTimer, autoclick, %clickRate%
-  Send {Blind}{LButton Up}
+  Send {Blind}{RButton Up}
 return
 
 EmptyMem()
